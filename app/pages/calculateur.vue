@@ -115,7 +115,7 @@ function isScore(val: string): val is Score {
         <CycloResult v-if="score" :score="score" @restart="handleRestart" />
         <CycloQuestion v-else-if="currentQuestion" :key="currentQuestionId" :question="currentQuestion"
           @answer="handleAnswer" />
-        <div v-else class="text-center text-red-500">
+        <div v-else class="text-center text-error">
           Erreur: Question introuvable ({{ currentQuestionId }})
         </div>
       </Transition>

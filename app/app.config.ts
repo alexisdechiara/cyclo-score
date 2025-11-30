@@ -20,10 +20,10 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'CYCLO-SCORE'
+    siteName: 'Cyclo-Score'
   },
   header: {
-    title: 'CYCLO-SCORE',
+    title: 'Cyclo-Score',
     to: '/',
     logo: {
       alt: '',
@@ -34,7 +34,7 @@ export default defineAppConfig({
     colorMode: true,
     links: [{
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt-ui-templates/docs',
+      'to': 'https://alexisdechiara/cyclo-score',
       'target': '_blank',
       'aria-label': 'GitHub'
     }]
