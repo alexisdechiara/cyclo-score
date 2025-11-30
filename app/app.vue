@@ -31,21 +31,20 @@ provide('navigation', navigation)
   <UApp>
     <NuxtLoadingIndicator />
 
-    <AppHeader />
+    <div class="flex flex-col max-h-screen fixed inset-0 overflow-hidden justify-between">
+      <AppHeader />
 
-    <UMain>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </UMain>
+      <UMain class="flex-1 min-h-0">
+        <NuxtLayout>
+          <NuxtPage />
+        </NuxtLayout>
+      </UMain>
 
-    <AppFooter />
+      <AppFooter />
+    </div>
 
     <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        :navigation="navigation"
-      />
+      <LazyUContentSearch :files="files" :navigation="navigation" :color-mode="false" />
     </ClientOnly>
   </UApp>
 </template>

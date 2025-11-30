@@ -1,21 +1,29 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'green',
+      primary: 'indigo',
       neutral: 'slate'
+    },
+    main: {
+      base: 'min-h-0 size-full'
     },
     footer: {
       slots: {
         root: 'border-t border-default',
         left: 'text-sm text-muted'
       }
+    },
+    pageHeader: {
+      slots: {
+        root: 'border-0'
+      }
     }
   },
   seo: {
-    siteName: 'Nuxt Docs Template'
+    siteName: 'CYCLO-SCORE'
   },
   header: {
-    title: '',
+    title: 'CYCLO-SCORE',
     to: '/',
     logo: {
       alt: '',
@@ -32,41 +40,30 @@ export default defineAppConfig({
     }]
   },
   footer: {
-    credits: `Built with Nuxt UI • © ${new Date().getFullYear()}`,
+    credits: `Réalisé par Alexis De Chiara • © ${new Date().getFullYear()}`,
     colorMode: false,
     links: [{
-      'icon': 'i-simple-icons-discord',
-      'to': 'https://go.nuxt.com/discord',
+      'icon': 'i-simple-icons-bento',
+      'to': 'https://bento.me/altis',
       'target': '_blank',
-      'aria-label': 'Nuxt on Discord'
+      'aria-label': 'Site web d\'origine'
     }, {
-      'icon': 'i-simple-icons-x',
-      'to': 'https://go.nuxt.com/x',
+      'icon': 'i-lucide-globe',
+      'to': 'https://altisplay.fr/cyclo-score/',
       'target': '_blank',
-      'aria-label': 'Nuxt on X'
+      'aria-label': 'Site web d\'origine'
     }, {
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt/ui',
+      'to': 'https://alexisdechiara/cyclo-score',
       'target': '_blank',
-      'aria-label': 'Nuxt UI on GitHub'
+      'aria-label': 'Code source sur GitHub'
     }]
   },
   toc: {
-    title: 'Table of Contents',
+    title: 'Table des matieres',
     bottom: {
-      title: 'Community',
-      edit: 'https://github.com/nuxt-ui-templates/docs/edit/main/content',
-      links: [{
-        icon: 'i-lucide-star',
-        label: 'Star on GitHub',
-        to: 'https://github.com/nuxt/ui',
-        target: '_blank'
-      }, {
-        icon: 'i-lucide-book-open',
-        label: 'Nuxt UI docs',
-        to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
-        target: '_blank'
-      }]
+      title: 'Participer',
+      edit: 'https://github.com/nuxt-ui-templates/docs/edit/main/content'
     }
   }
 })

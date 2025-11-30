@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content',
     'nuxt-og-image',
-    'nuxt-llms'
+    'nuxt-llms',
+    '@nuxt/icon'
   ],
 
   devtools: {
@@ -47,30 +48,29 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    provider: 'iconify'
+    provider: 'iconify',
+    customCollections: [
+      {
+        prefix: 'cyclo-score',
+        dir: './app/assets/css/icons/cyclo-score'
+      }
+    ]
   },
 
   llms: {
-    domain: 'https://docs-template.nuxt.dev/',
-    title: 'Nuxt Docs Template',
-    description: 'A template for building documentation with Nuxt UI and Nuxt Content.',
+    domain: 'https://cyclo-score.nuxt.dev/',
+    title: 'Cyclo-Score',
+    description: 'Documentation et glossaire pour le calculateur Cyclo-Score.',
     full: {
-      title: 'Nuxt Docs Template - Full Documentation',
-      description: 'This is the full documentation for the Nuxt Docs Template.'
+      title: 'Cyclo-Score - Glossaire',
+      description: 'Toutes les définitions du Cyclo-Score.'
     },
     sections: [
       {
-        title: 'Getting Started',
+        title: 'Glossaire',
         contentCollection: 'docs',
         contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/getting-started%' }
-        ]
-      },
-      {
-        title: 'Essentials',
-        contentCollection: 'docs',
-        contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/essentials%' }
+          { field: 'path', operator: 'LIKE', value: '/%' }
         ]
       }
     ]
