@@ -1,16 +1,16 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import { defineContentConfig, defineCollection, z } from "@nuxt/content"
 
 export default defineContentConfig({
   collections: {
     landing: defineCollection({
-      type: 'page',
-      source: 'index.md'
+      type: "page",
+      source: "index.md"
     }),
     docs: defineCollection({
-      type: 'page',
+      type: "page",
       source: {
-        include: '**',
-        exclude: ['index.md']
+        include: "**",
+        exclude: ["index.md"]
       },
       schema: z.object({
         links: z.array(z.object({

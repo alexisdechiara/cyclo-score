@@ -8,12 +8,12 @@ interface Star {
 const props = withDefaults(defineProps<{
   starCount?: number
   color?: string
-  speed?: 'slow' | 'normal' | 'fast'
+  speed?: "slow" | "normal" | "fast"
   size?: { min: number, max: number }
 }>(), {
   starCount: 300,
-  color: 'var(--ui-primary)',
-  speed: 'normal',
+  color: "var(--ui-primary)",
+  speed: "normal",
   size: () => ({
     min: 1,
     max: 2
@@ -25,7 +25,7 @@ const generateStars = (count: number): Star[] => {
   return Array.from({ length: count }, () => ({
     x: Math.floor(Math.random() * 2000),
     y: Math.floor(Math.random() * 2000),
-    size: typeof props.size === 'number'
+    size: typeof props.size === "number"
       ? props.size
       : Math.random() * (props.size.max - props.size.min) + props.size.min
   }))
@@ -39,7 +39,7 @@ const speedMap = {
 }
 
 // Use a more efficient approach to generate and store stars
-const stars = useState<{ slow: Star[], normal: Star[], fast: Star[] }>('stars', () => {
+const stars = useState<{ slow: Star[], normal: Star[], fast: Star[] }>("stars", () => {
   return {
     slow: generateStars(Math.floor(props.starCount * speedMap.slow.ratio)),
     normal: generateStars(Math.floor(props.starCount * speedMap.normal.ratio)),

@@ -1,27 +1,27 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('index', () => queryCollection('landing').path('/').first())
-const { data: firstDoc } = await useAsyncData('firstDoc', () => queryCollection('docs').first())
+const { data: page } = await useAsyncData("index", () => queryCollection("landing").path("/").first())
+const { data: firstDoc } = await useAsyncData("firstDoc", () => queryCollection("docs").first())
 
 useSeoMeta({
-  title: page.value?.seo?.title || 'CYCLO-SCORE',
-  description: page.value?.seo?.description || 'Évaluez la qualité des aménagements cyclables.',
+  title: page.value?.seo?.title || "Cyclo-Score",
+  description: page.value?.seo?.description || "Évaluez la qualité des aménagements cyclables."
 })
 
 const cards = [
   {
-    title: 'Standardisé',
-    description: 'Basé sur une méthodologie rigoureuse prenant en compte la séparation, la vitesse et la continuité.',
-    icon: 'lucide:badge-check'
+    title: "Standardisé",
+    description: "Basé sur une méthodologie rigoureuse prenant en compte la séparation, la vitesse et la continuité.",
+    icon: "lucide:badge-check"
   },
   {
-    title: 'Pédagogique',
-    description: 'Apprenez les termes techniques grâce à notre glossaire intégré et nos définitions claires.',
-    icon: 'lucide:graduation-cap'
+    title: "Pédagogique",
+    description: "Apprenez les termes techniques grâce à notre glossaire intégré et nos définitions claires.",
+    icon: "lucide:graduation-cap"
   },
   {
-    title: 'Rapide',
-    description: 'Obtenez un score de A à E en moins de 2 minutes en répondant à quelques questions simples.',
-    icon: 'lucide:bar-chart-3'
+    title: "Rapide",
+    description: "Obtenez un score de A à E en moins de 2 minutes en répondant à quelques questions simples.",
+    icon: "lucide:bar-chart-3"
   }
 ]
 </script>
@@ -35,15 +35,26 @@ const cards = [
           <span>Cyclo-</span><span class="text-primary">Score</span>
         </h1>
         <p class="text-xl text-muted max-w-lg">
-          Un outil simple pour évaluer la sécurité et le confort des aménagements cyclables selon une méthodologie
-          standardisée.
+          Un outil simple pour évaluer la sécurité et le confort des aménagements cyclables
         </p>
 
         <div class="flex gap-4">
-          <UButton to="/calculateur" size="xl" color="primary" variant="solid" icon="lucide:play">
-            Commencer le test
+          <UButton
+            to="/calculateur"
+            size="xl"
+            color="primary"
+            variant="solid"
+            icon="lucide:play"
+          >
+            Commencer
           </UButton>
-          <UButton :to="firstDoc?.path || '/docs'" size="xl" color="neutral" variant="outline" icon="lucide:book-open">
+          <UButton
+            :to="firstDoc?.path || '/docs'"
+            size="xl"
+            color="neutral"
+            variant="outline"
+            icon="lucide:book-open"
+          >
             Glossaire
           </UButton>
         </div>
@@ -51,7 +62,11 @@ const cards = [
 
       <!-- Right Column: Cards -->
       <div class="grid gap-6">
-        <UPageCard v-for="(card, index) in cards" :key="index" v-bind="card" />
+        <UPageCard
+          v-for="(card, index) in cards"
+          :key="index"
+          v-bind="card"
+        />
       </div>
     </div>
   </div>

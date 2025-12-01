@@ -1,20 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/content',
-    'nuxt-og-image',
-    'nuxt-llms',
-    '@nuxt/icon'
+    "@nuxt/eslint",
+    "@nuxt/image",
+    "@nuxt/ui",
+    "@nuxt/content",
+    "nuxt-og-image",
+    "nuxt-llms",
+    "@nuxt/icon"
   ],
 
   devtools: {
     enabled: true
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
   content: {
     build: {
@@ -26,12 +26,12 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-07-11',
+  compatibilityDate: "2024-07-11",
 
   nitro: {
     prerender: {
       routes: [
-        '/'
+        "/"
       ],
       crawlLinks: true,
       autoSubfolderIndex: false
@@ -41,36 +41,37 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
+        commaDangle: "never",
+        braceStyle: "1tbs",
+        quotes: "double"
       }
     }
   },
 
   icon: {
-    provider: 'iconify',
+    provider: "iconify",
     customCollections: [
       {
-        prefix: 'cyclo-score',
-        dir: './app/assets/css/icons/cyclo-score'
+        prefix: "cyclo-score",
+        dir: "./app/assets/css/icons/cyclo-score"
       }
     ]
   },
 
   llms: {
-    domain: 'https://cyclo-score.nuxt.dev/',
-    title: 'Cyclo-Score',
-    description: 'Documentation et glossaire pour le calculateur Cyclo-Score.',
+    domain: "https://cyclo-score.nuxt.dev/",
+    title: "Cyclo-Score",
+    description: "Documentation et glossaire pour le calculateur Cyclo-Score.",
     full: {
-      title: 'Cyclo-Score - Glossaire',
-      description: 'Toutes les définitions du Cyclo-Score.'
+      title: "Cyclo-Score - Glossaire",
+      description: "Toutes les définitions du Cyclo-Score."
     },
     sections: [
       {
-        title: 'Glossaire',
-        contentCollection: 'docs',
+        title: "Glossaire",
+        contentCollection: "docs",
         contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/%' }
+          { field: "path", operator: "LIKE", value: "/%" }
         ]
       }
     ]
