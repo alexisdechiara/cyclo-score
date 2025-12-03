@@ -17,7 +17,7 @@ Use this template to build your own documentation with [Nuxt UI](https://ui.nuxt
 
 ## Quick Start
 
-```bash [Terminal]
+```bash [titleinal]
 npm create nuxt@latest -- -t github:nuxt-ui-templates/docs
 ```
 

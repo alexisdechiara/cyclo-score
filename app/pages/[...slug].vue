@@ -17,17 +17,17 @@ if (!page.value) {
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
   return queryCollectionItemSurroundings("glossary", route.path, {
-    fields: ["definition"]
+    fields: ["description"]
   })
 })
 
-const title = page.value.seo?.title || page.value.title
-const definition = page.value.seo?.definition || page.value.definition
+const term = page.value.seo?.title || page.value.title
+const definition = page.value.seo?.description || page.value.description
 
 useSeoMeta({
-  title,
-  ogTitle: title,
-  definition: definition,
+  title: term,
+  ogTitle: term,
+  description: definition,
   ogDescription: definition
 })
 
@@ -54,7 +54,7 @@ const links = computed(() => {
 
 <template>
   <UPage v-if="page">
-    <UPageHeader :title="page.title" :description="page.definition">
+    <UPageHeader :title="page.title" :description="definition">
       <template #links>
         <UButton v-for="(link, index) in page.links" :key="index" v-bind="link" />
       </template>
@@ -65,11 +65,7 @@ const links = computed(() => {
 
       <USeparator v-if="surround?.length" />
 
-      <UContentSurround :surround="surround">
-        <template #link-description="{ link }">
-          {{ link.definition }}
-        </template>
-      </UContentSurround>
+      <UContentSurround :surround="surround" />
     </UPageBody>
 
     <template #right>

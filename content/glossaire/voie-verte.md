@@ -1,6 +1,6 @@
 ---
-terme: Voie verte
-definition: Route exclusivement réservée à la circulation des véhicules non motorisés, des piétons et des cavaliers.
+titlee: Voie verte
+description: Route exclusivement réservée à la circulation des véhicules non motorisés, des piétons et des cavaliers.
 ---
 
 ## Exemples

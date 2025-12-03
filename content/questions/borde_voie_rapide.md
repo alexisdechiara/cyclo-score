@@ -1,5 +1,5 @@
 ---
 yes: borde_arbres_sonore
-no: largeur_2_5m_ou_4m
+no: continuite_claire_feu
 ---
 L'aménagement est-il **bordé par une voie** rapide **≥ 50 km/h** ?

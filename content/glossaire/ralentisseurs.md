@@ -1,6 +1,6 @@
 ---
-terme: Ralentisseurs
-definition: Surélévation de la chaussée (dos d'âne, coussin berlinois) destinée à contraindre les véhicules à réduire leur vitesse.
+titlee: Ralentisseurs
+description: Surélévation de la chaussée (dos d'âne, coussin berlinois) destinée à contraindre les véhicules à réduire leur vitesse.
 ---
 
 ## Exemples

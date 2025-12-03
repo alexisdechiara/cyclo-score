@@ -69,7 +69,7 @@ Un outil simple pour évaluer la sécurité et le confort des aménagements cycl
   Intuitif
 
   #description
-  Apprenez les termes techniques grâce à notre glossaire intégré et nos définitions claires.  
+  Apprenez les titlees techniques grâce à notre glossaire intégré et nos définitions claires.  
   :::
 
   :::u-page-card
