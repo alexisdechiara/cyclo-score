@@ -7,19 +7,19 @@ import { NodeResizer } from '@vue-flow/node-resizer'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
 import dagre from 'dagre'
-import { questions, type Score, getBestPossibleScore } from '~/utils/questions'
+import type { Score } from '~/types/questions'
+import { getBestPossibleScore } from '~/utils/questions'
 import ScoreBadge from '~/components/ScoreBadge.vue'
 import '@vue-flow/core/dist/style.css'
 import '@vue-flow/controls/dist/style.css'
 import '@vue-flow/node-resizer/dist/style.css'
 
+const { questions, startId } = useQuestions()
 const { fitView, setCenter, findNode } = useVueFlow()
 
 // Tailles des nœuds
 const NODE_MIN_WIDTH = 200
-const NODE_DEFAULT_WIDTH = 260
 const NODE_MIN_HEIGHT = 100
-const NODE_DEFAULT_HEIGHT = 140
 
 const nodes = ref<FlowNode[]>([])
 const edges = ref<FlowEdge[]>([])
@@ -57,11 +57,7 @@ const activeSearchIndex = ref(0)
 const highlightedNodeId = ref<string | null>(null)
 const searchInputRef = ref<{ $el?: { querySelector: (selector: string) => HTMLInputElement | null } } | null>(null)
 
-// Helper to parse simple markdown (bold)
-const parseMarkdown = (text: string) => {
-  // Replace **text** with <strong>text</strong>
-  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-}
+
 
 // Helper to get color based on score
 const getScoreColor = (score: Score | 'E' | string | null) => {
@@ -82,15 +78,16 @@ const buildGraph = () => {
   const addedNodes = new Set<string>()
 
   // Add question nodes
-  for (const [id, question] of Object.entries(questions)) {
+  for (const [id, question] of Object.entries(questions.value)) {
     if (!addedNodes.has(id)) {
       tempNodes.push({
         id,
         type: 'question', // Custom type for questions
         data: {
-          label: question.text,
-          fullText: question.text,
-          isStart: id === 'separe_physiquement' // Identify start node
+          question: question, // Pass the full question object
+          label: question.description,
+          fullText: question.description,
+          isStart: id === startId.value // Identify start node
         },
         position: { x: 0, y: 0 },
         targetPosition: layoutDirection.value === 'TB' ? Position.Top : Position.Left,
@@ -124,7 +121,7 @@ const buildGraph = () => {
         : (linkColorMode.value as any)?.value ?? 'standard'
 
       if (mode === 'score') {
-        return getScoreColor(getBestPossibleScore(target))
+        return getScoreColor(getBestPossibleScore(target, questions.value))
       }
       return null // null → mode standard (fixed colors)
     }
@@ -417,6 +414,10 @@ const handleGlobalKeyDown = (e: KeyboardEvent) => {
 }
 
 // Watchers
+watch(questions, () => {
+  rebuildGraph({ preservePositions: false, relayout: true })
+})
+
 watch([showPositive, showNegative, selectedScores], applyFilters)
 
 watch(layoutDirection, () => {
@@ -453,7 +454,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="relative size-full">
+  <div class="relative w-full h-[calc(100vh-8rem)]">
     <transition name="fade">
       <UCard v-if="searchBarVisible" class="absolute top-3 left-4 z-60 w-fit" :ui="{
         root: 'shadow-lg ring-1 ring-gray-200 dark:ring-gray-700',
@@ -528,8 +529,7 @@ onBeforeUnmount(() => {
     <VueFlow v-model:nodes="nodes" v-model:edges="edges" :default-viewport="{ zoom: 0.8 }" :min-zoom="0.1" :max-zoom="4"
       fit-view-on-init :nodes-draggable="true" :nodes-connectable="false" :elements-selectable="true" edges-draggable
       edges-updatable selection-on-drag zoom-on-scroll :pan-on-drag="[2]" :pan-on-scroll-speed="1"
-      default-marker-color="var(--ui-primary)" :default-edge-options="defaultEdgeOptions"
-      class="vue-flow__edges-updatable vue-flow__edges-selectable">
+      :default-edge-options="defaultEdgeOptions">
       <Background :gap="20" />
       <Controls />
 
@@ -537,29 +537,24 @@ onBeforeUnmount(() => {
       <template #node-question="props">
         <div class="relative">
           <NodeResizer :is-visible="props.selected" :min-width="NODE_MIN_WIDTH" :min-height="NODE_MIN_HEIGHT"
-            class="resize-handle" :line-style="{ borderColor: 'var(--ui-primary)', borderWidth: 2 }" />
-          <div class="question-node" :class="{
-            'is-start': props.data.isStart,
-            'is-highlighted': props.id === highlightedNodeId,
-            'w-[260px] h-[140px]': !props.dimensions?.width && !props.dimensions?.height
-          }" :style="{
-            width: props.dimensions?.width ? `${props.dimensions.width}px` : undefined,
-            height: props.dimensions?.height ? `${props.dimensions.height}px` : undefined,
-            minWidth: `${NODE_MIN_WIDTH}px`,
-            minHeight: `${NODE_MIN_HEIGHT}px`
-          }">
-            <div class="question-content" v-html="parseMarkdown(props.data.label)"></div>
+            handle-class-name="bg-primary! border-primary!"
+            line-class-name="border-primary! border! rounded! border-1.5!" />
+          <div class="question-node"
+            :class="{ 'is-start': props.data.isStart, 'ring-2! ring-primary': props.id === highlightedNodeId, 'w-[260px] h-[140px]': !props.dimensions?.width && !props.dimensions?.height }"
+            :style="{
+              width: props.dimensions?.width ? `${props.dimensions.width}px` : NODE_MIN_WIDTH,
+              height: props.dimensions?.height ? `${props.dimensions.height}px` : NODE_MIN_HEIGHT,
+              minWidth: `${NODE_MIN_WIDTH}px`,
+              minHeight: `${NODE_MIN_HEIGHT}px`
+            }">
+            <FlowchartLabel :question="props.data.question" />
           </div>
         </div>
       </template>
 
       <!-- Custom Score Node -->
       <template #node-score="props">
-        <div class="score-node" :class="{ 'is-highlighted': props.id === highlightedNodeId }">
-          <div class="transform scale-50 origin-top-left w-[200%] h-[200%]">
-            <ScoreBadge :score="props.data.score" />
-          </div>
-        </div>
+        <ScoreBadge :score="props.data.score" variant="flowchart" />
       </template>
 
     </VueFlow>
@@ -576,119 +571,9 @@ onBeforeUnmount(() => {
   transition: all 0.2s ease;
   background: var(--ui-bg);
   border: 1px solid var(--ui-border);
-  border-radius: calc(var(--ui-radius) * 2);
+  border-radius: calc(var(--ui-radius) * 3);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   color: var(--ui-text);
-}
-
-.resize-handle {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 9999px;
-  border: 2px solid #ffffff;
-  background-color: var(--ui-primary);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  z-index: 10;
-}
-
-/* Positionnement des poignées de redimensionnement */
-.resize-handle-top-left {
-  top: -6px;
-  left: -6px;
-  cursor: nwse-resize;
-}
-
-.resize-handle-top {
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: ns-resize;
-}
-
-.resize-handle-top-right {
-  top: -6px;
-  right: -6px;
-  cursor: nesw-resize;
-}
-
-.resize-handle-right {
-  top: 50%;
-  right: -6px;
-  transform: translateY(-50%);
-  cursor: ew-resize;
-}
-
-.resize-handle-bottom-right {
-  bottom: -6px;
-  right: -6px;
-  cursor: nwse-resize;
-}
-
-.resize-handle-bottom {
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: ns-resize;
-}
-
-.resize-handle-bottom-left {
-  bottom: -6px;
-  left: -6px;
-  cursor: nesw-resize;
-}
-
-.resize-handle-left {
-  top: 50%;
-  left: -6px;
-  transform: translateY(-50%);
-  cursor: ew-resize;
-}
-
-.question-content strong {
-  font-weight: 700;
-  color: var(--ui-text-highlighted);
-}
-
-.question-node.is-highlighted {
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.8), 0 10px 15px -3px rgba(15, 23, 42, 0.4);
-  transform: scale(1.02);
-}
-
-.score-node {
-  background: transparent;
-  border: none;
-  width: 300px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-}
-
-.score-node.is-highlighted {
-  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9));
-}
-
-/* Custom Score Node Wrapper styling if needed */
-.vue-flow__node-score {
-  /* Transparent background for the custom node container */
-  background: transparent;
-  border: none;
-  width: 300px;
-  /* Match the layout width */
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.vue-flow__edge {
-  z-index: 3;
-}
-
-.vue-flow__node {
-  z-index: 2;
 }
 
 .fade-enter-active,

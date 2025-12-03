@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Score } from "~/utils/questions"
+import type { Score } from "~/types/questions"
 
 defineProps<{
   score: Score

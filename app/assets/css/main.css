@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@plugin '@tailwindcss/typography';
 @source "../../../content/**/*";
 
 @theme static {
@@ -55,7 +56,7 @@
 
 :root {
 
-  
+
 
   --ui-container: var(--container-8xl);
 }

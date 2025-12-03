@@ -1,20 +1,23 @@
-import { questions, type Score, getBestPossibleScore, getMaxRemainingDepth } from "~/utils/questions"
+import { getBestPossibleScore, getMaxRemainingDepth } from "~/utils/questions"
+import type { Score } from "~/types/questions"
 
 export function useCycloCalculator() {
-  const currentQuestionId = ref("est_separe_physiquement")
+  const { questions, startId } = useQuestions()
+
+  const currentQuestionId = ref(startId.value || "separe_physiquement")
   const history = ref<string[]>([])
   const score = ref<Score | null>(null)
   const appConfig = useAppConfig()
 
   // Question actuelle basée sur l'ID
-  const currentQuestion = computed(() => questions[currentQuestionId.value])
+  const currentQuestion = computed(() => questions.value[currentQuestionId.value])
 
   // Calcul de la progression
   const progress = computed(() => {
     if (score.value) return 100
 
     const currentDepth = history.value.length
-    const remainingDepth = getMaxRemainingDepth(currentQuestionId.value)
+    const remainingDepth = getMaxRemainingDepth(currentQuestionId.value, questions.value)
     const totalDepth = currentDepth + remainingDepth
 
     // Éviter la division par zéro
@@ -26,7 +29,7 @@ export function useCycloCalculator() {
   // Score cible (pour la couleur)
   const targetScore = computed(() => {
     if (score.value) return score.value
-    return getBestPossibleScore(currentQuestionId.value)
+    return getBestPossibleScore(currentQuestionId.value, questions.value)
   })
 
   // Mise à jour de la couleur primaire
@@ -91,7 +94,7 @@ export function useCycloCalculator() {
   }
 
   function handleRestart() {
-    currentQuestionId.value = "est_separe_physiquement"
+    currentQuestionId.value = startId.value || "separe_physiquement"
     history.value = []
     score.value = null
   }

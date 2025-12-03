@@ -13,9 +13,9 @@ export default defineAppConfig({
         left: "text-sm text-muted"
       }
     },
-    pageHeader: {
+    pageHero: {
       slots: {
-        root: "border-0"
+        container: "py-0 sm:py-0 lg:py-0 h-[calc(100vh-8rem)]"
       }
     }
   },

@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     sections: [
       {
         title: "Glossaire",
-        contentCollection: "docs",
+        contentCollection: "glossary",
         contentFilters: [
           { field: "path", operator: "LIKE", value: "/%" }
         ]

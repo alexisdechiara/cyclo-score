@@ -1,10 +1,31 @@
 <script setup lang="ts">
+import type { CommandPaletteGroup, ContentSearchItem } from "@nuxt/ui"
+
 const { seo } = useAppConfig()
 
-const { data: navigation } = await useAsyncData("navigation", () => queryCollectionNavigation("docs"))
-const { data: files } = useLazyAsyncData("search", () => queryCollectionSearchSections("docs"), {
+const { data: navigation } = await useAsyncData("navigation", () => queryCollectionNavigation("glossary"))
+const { data: files } = useLazyAsyncData("search", () => queryCollectionSearchSections("glossary"), {
   server: false
 })
+
+const groups: CommandPaletteGroup<ContentSearchItem>[] = [
+  {
+    id: "tools",
+    label: "Outils",
+    items: [
+      {
+        label: "Calculateur",
+        to: "/calculateur",
+        icon: "i-lucide-gauge"
+      },
+      {
+        label: "Logigramme",
+        to: "/flowchart",
+        icon: "i-lucide-git-fork"
+      }
+    ]
+  }
+]
 
 useHead({
   meta: [
@@ -31,24 +52,19 @@ provide("navigation", navigation)
   <UApp>
     <NuxtLoadingIndicator />
 
-    <div class="flex flex-col max-h-screen fixed inset-0 overflow-hidden justify-between">
-      <AppHeader />
+    <AppHeader />
 
-      <UMain class="flex-1 min-h-0">
-        <NuxtLayout>
-          <NuxtPage />
-        </NuxtLayout>
-      </UMain>
+    <UMain>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UMain>
 
-      <AppFooter />
-    </div>
+    <AppFooter />
 
     <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        :navigation="navigation"
-        :color-mode="false"
-      />
+      <LazyUContentSearch placeholder="Rechercher..." :files="files" :navigation="navigation" :groups="groups"
+        :color-mode="false" :ui="{ modal: 'sm:max-w-lg' }" />
     </ClientOnly>
   </UApp>
 </template>

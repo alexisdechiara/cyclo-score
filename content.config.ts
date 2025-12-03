@@ -6,19 +6,26 @@ export default defineContentConfig({
       type: "page",
       source: "index.md"
     }),
-    docs: defineCollection({
+    glossary: defineCollection({
       type: "page",
-      source: {
-        include: "**",
-        exclude: ["index.md"]
-      },
+      source: "glossaire/*.md",
       schema: z.object({
+        term: z.string(),
+        definition: z.string(),
         links: z.array(z.object({
           label: z.string(),
           icon: z.string(),
           to: z.string(),
           target: z.string().optional()
         })).optional()
+      })
+    }),
+    questions: defineCollection({
+      type: "page",
+      source: "questions/*.md",
+      schema: z.object({
+        yes: z.string(),
+        no: z.string()
       })
     })
   }
