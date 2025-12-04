@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { UButton, UInput, UCard, UAccordion, UTabs, USelect } from '#components'
 import { ref, onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
-import type { CSSProperties } from 'vue'
 import { VueFlow, useVueFlow, type Node as FlowNode, type Edge as FlowEdge, Position, MarkerType } from '@vue-flow/core'
 import { NodeResizer } from '@vue-flow/node-resizer'
 import { Background } from '@vue-flow/background'
@@ -16,6 +15,15 @@ import '@vue-flow/node-resizer/dist/style.css'
 
 const { questions, startId } = useQuestions()
 const { fitView, setCenter, findNode } = useVueFlow()
+
+useSeoMeta({
+  title: "Logigramme",
+  description: "Visualisez l'ensemble des chemins et décisions du référentiel Cyclo-Score sous forme de logigramme interactif.",
+  ogTitle: "Logigramme",
+  ogDescription: "Visualisez l'ensemble des chemins et décisions du référentiel Cyclo-Score.",
+})
+
+defineOgImageComponent('Docs')
 
 // Tailles des nœuds
 const NODE_MIN_WIDTH = 200
@@ -38,6 +46,7 @@ const defaultEdgeOptions = {
     strokeWidth: 1.5,
     cursor: 'move'
   },
+  labelBgStyle: { fill: 'var(--ui-bg)' },
   markerEnd: { type: MarkerType.Arrow },
   interactionWidth: 20,
   selectable: true,
@@ -584,5 +593,18 @@ onBeforeUnmount(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+.vue-flow__controls .vue-flow__controls-button {
+  background: var(--ui-bg);
+  border-bottom: 0;
+  color: var(--ui-text);
+}
+
+.vue-flow__controls .vue-flow__controls-button:hover {
+  background: var(--ui-bg-elevated);
+}
+
+.vue-flow__controls .vue-flow__controls-button svg {
+  fill: currentColor;
 }
 </style>

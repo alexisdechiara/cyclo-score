@@ -6,9 +6,10 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxt/content",
     "nuxt-og-image",
-    "nuxt-llms",
     "@nuxt/icon",
-    "@vueuse/nuxt"
+    "@vueuse/nuxt",
+    "@nuxt/fonts",
+    "@nuxtjs/seo"
   ],
 
   devtools: {
@@ -16,6 +17,12 @@ export default defineNuxtConfig({
   },
 
   css: ["~/assets/css/main.css"],
+
+  site: {
+    name: "Cyclo-Score",
+    description: "Un outil simple pour évaluer la sécurité et le confort des aménagements cyclables.",
+    defaultLocale: "fr"
+  },
 
   content: {
     build: {
@@ -27,7 +34,7 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: "2024-07-11",
+  compatibilityDate: "2025-12-04",
 
   nitro: {
     prerender: {
@@ -55,25 +62,6 @@ export default defineNuxtConfig({
       {
         prefix: "cyclo-score",
         dir: "./app/assets/css/icons/cyclo-score"
-      }
-    ]
-  },
-
-  llms: {
-    domain: "https://cyclo-score.nuxt.dev/",
-    title: "Cyclo-Score",
-    description: "Documentation et glossaire pour le calculateur Cyclo-Score.",
-    full: {
-      title: "Cyclo-Score - Glossaire",
-      description: "Toutes les définitions du Cyclo-Score."
-    },
-    sections: [
-      {
-        title: "Glossaire",
-        contentCollection: "glossary",
-        contentFilters: [
-          { field: "path", operator: "LIKE", value: "/%" }
-        ]
       }
     ]
   }

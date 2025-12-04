@@ -20,7 +20,6 @@ Ce projet utilise les dernières technologies de l'écosystème Vue et Nuxt :
 - 📊 **Visualisation** : [Vue Flow](https://vueflow.dev/) (Core, Controls, Background) pour l'affichage de diagrammes interactifs.
 - ✨ **Icônes** : [Nuxt Icon](https://nuxt.com/modules/icon) intégrant les collections `lucide` et `simple-icons`.
 - 🖼️ **Images & SEO** : [Nuxt Image](https://image.nuxt.com/) et [Nuxt OG Image](https://nuxt.com/modules/og-image) pour l'optimisation des médias et le partage social.
-- 🧠 **IA Ready** : [Nuxt LLMs](https://nuxt.com/modules/llms) pour structurer le contenu pour les assistants IA.
 - 📐 **Algorithmes** : [Dagre](https://github.com/dagrejs/dagre) pour le calcul automatique du layout des graphes.
 
 ## 📂 Structure du Projet

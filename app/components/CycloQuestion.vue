@@ -13,7 +13,7 @@ const emit = defineEmits<{
 <template>
   <div class="flex flex-col items-center justify-center space-y-8 max-w-2xl mx-auto">
     <div
-      class="prose text-2xl prose-strong:prose-a:font-bold md:text-3xl prose-strong:font-bold prose-p:font-medium prose-p:leading-tight prose-p:m-0 text-center text-pretty">
+      class="prose text-default text-2xl prose-strong:prose-a:font-bold md:text-3xl prose-strong:font-bold prose-strong:text-default prose-p:font-medium prose-p:leading-tight prose-p:m-0 text-center text-pretty">
       <ContentRenderer :value="question" />
     </div>
 

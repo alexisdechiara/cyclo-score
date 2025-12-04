@@ -42,8 +42,9 @@ useHead({
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
-  twitterCard: "summary_large_image"
 })
+
+defineOgImageComponent('NuxtSeo')
 
 provide("navigation", navigation)
 </script>

@@ -6,7 +6,8 @@
 
 @theme static {
   --container-8xl: 90rem;
-  --font-sans: 'Public Sans', sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-score: "Google Sans Flex", sans-serif;
 
   --color-green-50: oklch(0.956 0.021 156.72);
   --color-green-100: oklch(0.91 0.042 156.26);
@@ -59,4 +60,8 @@
   --ui-footer-height: calc(var(--spacing) * 16);
   --ui-main-height: calc(100vh - var(--ui-header-height) - var(--ui-footer-height));
   --ui-container: var(--container-8xl);
+}
+
+html {
+  scrollbar-gutter: stable;
 }

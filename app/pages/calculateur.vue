@@ -16,6 +16,13 @@ const { isPending: isLoading, start, stop } = useTimeoutFn(() => {
 }, 1000)
 
 start()
+
+useSeoMeta({
+  title: 'Calculateur',
+  description: 'Évaluez la cyclabilité de votre projet avec notre calculateur interactif basé sur le référentiel Cyclo-Score.',
+})
+
+defineOgImageComponent('Docs')
 </script>
 
 <template>

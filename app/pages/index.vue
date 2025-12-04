@@ -4,18 +4,16 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-const title = page.value.seo?.title || page.value.title
-const description = page.value.seo?.description || page.value.description
+const title = page.value?.title || page.value?.seo?.title
+const description = page.value?.description || page.value?.seo?.description
 
 useSeoMeta({
   titleTemplate: '',
   title,
-  ogTitle: title,
   description,
-  ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/docs-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/docs-light.png'
 })
+
+defineOgImageComponent('Docs')
 </script>
 
 <template>

@@ -26,10 +26,9 @@ const definition = page.value.seo?.description || page.value.description
 
 useSeoMeta({
   title: term,
-  ogTitle: term,
   description: definition,
-  ogDescription: definition
 })
+
 
 const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path))
 

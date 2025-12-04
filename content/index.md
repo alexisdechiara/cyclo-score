@@ -1,7 +1,7 @@
 ---
 seo:
   title: Cyclo-Score
-  description: Documentation et glossaire pour le calculateur Cyclo-Score.
+  description: Un outil simple pour évaluer la sécurité et le confort des aménagements cyclables.
 ---
 
 ::u-page-hero
