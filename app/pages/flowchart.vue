@@ -454,7 +454,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-[calc(100vh-8rem)]">
+  <div class="relative w-full h-(--ui-main-height)">
     <transition name="fade">
       <UCard v-if="searchBarVisible" class="absolute top-3 left-4 z-60 w-fit" :ui="{
         root: 'shadow-lg ring-1 ring-gray-200 dark:ring-gray-700',

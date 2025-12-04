@@ -9,13 +9,13 @@ export default defineAppConfig({
     },
     footer: {
       slots: {
-        root: "border-t border-default",
+        root: "outline-1 outline-default h-(--ui-footer-height) box-border",
         left: "text-sm text-muted"
       }
     },
     pageHero: {
       slots: {
-        container: "py-0 sm:py-0 lg:py-0 h-[calc(100vh-8rem)]"
+        container: "py-0 sm:py-0 lg:py-0 h-(--ui-main-height)"
       }
     }
   },
@@ -31,16 +31,10 @@ export default defineAppConfig({
       dark: ""
     },
     search: true,
-    colorMode: true,
-    links: [{
-      "icon": "i-simple-icons-github",
-      "to": "https://alexisdechiara/cyclo-score",
-      "target": "_blank",
-      "aria-label": "GitHub"
-    }]
+    colorMode: true
   },
   footer: {
-    credits: `Réalisé par Alexis De Chiara • © ${new Date().getFullYear()}`,
+    credits: `Réalisé par Alexis De Chiara © ${new Date().getFullYear()}`,
     colorMode: false,
     links: [{
       "icon": "i-simple-icons-bento",

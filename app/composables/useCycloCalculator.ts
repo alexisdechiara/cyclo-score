@@ -2,7 +2,7 @@ import { getBestPossibleScore, getMaxRemainingDepth } from "~/utils/questions"
 import type { Score } from "~/types/questions"
 
 export function useCycloCalculator() {
-  const { questions, startId } = useQuestions()
+  const { questions, startId, pending } = useQuestions()
 
   const currentQuestionId = ref(startId.value || "separe_physiquement")
   const history = ref<string[]>([])
@@ -14,6 +14,7 @@ export function useCycloCalculator() {
 
   // Calcul de la progression
   const progress = computed(() => {
+    if (pending.value) return 0
     if (score.value) return 100
 
     const currentDepth = history.value.length
@@ -107,6 +108,7 @@ export function useCycloCalculator() {
     progress,
     handleAnswer,
     handleBack,
-    handleRestart
+    handleRestart,
+    pending
   }
 }

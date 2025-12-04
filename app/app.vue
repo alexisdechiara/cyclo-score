@@ -56,7 +56,7 @@ provide("navigation", navigation)
 
     <UMain>
       <NuxtLayout>
-        <NuxtPage />
+        <NuxtPage class="min-h-(--ui-main-height)" />
       </NuxtLayout>
     </UMain>
 
@@ -64,7 +64,7 @@ provide("navigation", navigation)
 
     <ClientOnly>
       <LazyUContentSearch placeholder="Rechercher..." :files="files" :navigation="navigation" :groups="groups"
-        :color-mode="false" :ui="{ modal: 'sm:max-w-lg' }" />
+        :color-mode="false" />
     </ClientOnly>
   </UApp>
 </template>

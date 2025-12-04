@@ -7,16 +7,26 @@ const {
   progress,
   handleAnswer,
   handleBack,
-  handleRestart
+  handleRestart,
+  pending
 } = useCycloCalculator()
+
+const { isPending: isLoading, start, stop } = useTimeoutFn(() => {
+  stop()
+}, 1000)
+
+start()
 </script>
 
 <template>
-  <div class="w-full h-[calc(100vh-8rem)] flex flex-col items-center justify-between overflow-hidden">
+  <div class="w-full h-(--ui-main-height) flex flex-col items-center justify-between overflow-hidden">
     <UProgress v-model="progress" size="sm" :max="100" />
 
     <div class="flex-1 w-full max-w-4xl flex flex-col justify-center items-center overflow-y-auto min-h-0 p-4">
-      <Transition mode="out-in" enter-active-class="transition duration-200 ease-out"
+      <div v-if="pending" class="flex justify-center items-center">
+        <UIcon v-show="!isLoading" name="i-lucide-loader-2" class="w-8 h-8 animate-spin" />
+      </div>
+      <Transition v-else mode="out-in" enter-active-class="transition duration-200 ease-out"
         enter-from-class="transform translate-y-4 opacity-0" enter-to-class="transform translate-y-0 opacity-100"
         leave-active-class="transition duration-150 ease-in" leave-from-class="transform translate-y-0 opacity-100"
         leave-to-class="transform translate-y-4 opacity-0">

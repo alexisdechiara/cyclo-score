@@ -10,7 +10,7 @@ orientation: horizontal
 ---
 
 #title
-Cyclo-Score
+Cyclo-<span class="text-primary">Score</span>
 
 #description
 Un outil simple pour évaluer la sécurité et le confort des aménagements cyclables
