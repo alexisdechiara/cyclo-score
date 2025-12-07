@@ -3,6 +3,23 @@ import type { ContentNavigationItem } from "@nuxt/content"
 
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
 
+const tabs = [
+  {
+    value: "system",
+    icon: "i-ph-desktop",
+  },
+  {
+    value: "light",
+    icon: "i-ph-sun",
+  },
+  {
+    value: "dark",
+    icon: "i-ph-moon",
+  }
+]
+
+const colorMode = useColorMode()
+
 const { header } = useAppConfig()
 </script>
 
@@ -29,7 +46,8 @@ const { header } = useAppConfig()
     <template #right>
       <UContentSearchButton v-if="header?.search" class="lg:hidden" />
 
-      <UColorModeButton v-if="header?.colorMode" />
+      <UTabs v-if="header?.colorMode" color="neutral" :content="false" :items="tabs" size="sm"
+        v-model="colorMode.preference" :ui="{ trigger: 'cursor-pointer px-2' }" />
 
       <template v-if="header?.links">
         <UButton v-for="(link, index) of header.links" :key="index"

@@ -31,10 +31,11 @@ export default defineAppConfig({
       dark: ""
     },
     search: true,
-    colorMode: true
+    colorMode: true,
+    links: []
   },
   footer: {
-    credits: `Réalisé par Alexis De Chiara © ${new Date().getFullYear()}`,
+    credits: `Licence MIT 🄯 ${new Date().getFullYear()}`,
     colorMode: false,
     links: [{
       "icon": "i-simple-icons-bento",
