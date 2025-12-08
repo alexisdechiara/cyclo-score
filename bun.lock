@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "nuxt-ui-template-docs",
+      "name": "cyclo-score",
       "dependencies": {
         "@iconify-json/lucide": "^1.2.75",
         "@iconify-json/simple-icons": "^1.2.60",

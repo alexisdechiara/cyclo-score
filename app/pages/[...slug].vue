@@ -70,9 +70,7 @@ const links = computed(() => {
     <template #right>
       <UContentToc :title="toc?.title" :links="page.body?.toc?.links">
         <template v-if="toc?.bottom" #bottom>
-          <div class="hidden lg:block space-y-6" :class="{ 'mt-6!': page.body?.toc?.links?.length }">
-            <USeparator v-if="page.body?.toc?.links?.length" type="dashed" />
-
+          <div class="hidden lg:block space-y-6" :class="{ 'mt-3!': page.body?.toc?.links?.length }">
             <UPageLinks :title="toc.bottom.title" :links="links" />
           </div>
         </template>

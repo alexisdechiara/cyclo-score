@@ -58,7 +58,7 @@ export default defineAppConfig({
     title: "Table des matières",
     bottom: {
       title: "Participer",
-      edit: "https://github.com/nuxt-ui-templates/docs/edit/main/content"
+      edit: "https://github.com/alexisdechiara/cyclo-score/edit/main/content"
     }
   }
 })
