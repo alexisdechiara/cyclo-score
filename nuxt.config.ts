@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@vueuse/nuxt",
     "@nuxt/fonts",
-    "@nuxtjs/seo"
+    "@nuxtjs/seo",
+    "nuxt-studio"
   ],
 
   devtools: {
@@ -62,5 +63,18 @@ export default defineNuxtConfig({
         dir: "./app/assets/css/icons/cyclo-score"
       }
     ]
+  },
+
+  studio: {
+    dev: true,
+    i18n: {
+      defaultLocale: "fr"
+    },
+    repository: {
+      provider: process.env.STUDIO_PROVIDER as "github" | "gitlab",
+      owner: process.env.STUDIO_OWNER || "alexisdechiara",
+      repo: process.env.STUDIO_REPO || "cyclo-score",
+      branch: process.env.STUDIO_BRANCH
+    }
   }
 })
