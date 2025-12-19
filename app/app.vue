@@ -57,7 +57,7 @@ provide("navigation", navigation)
 
     <UMain>
       <NuxtLayout>
-        <NuxtPage class="min-h-(--ui-main-height)" />
+        <NuxtPage />
       </NuxtLayout>
     </UMain>
 

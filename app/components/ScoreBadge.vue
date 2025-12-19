@@ -38,7 +38,8 @@ const colors: Record<Score, { backgroundColor: string, ringColor: string, text: 
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center font-bold text-inverted overflow-hidden ring-12"
+  <div
+    class="scale-66 md:scale-100 flex flex-col items-center justify-center font-bold text-inverted overflow-hidden ring-12"
     :class="[colors[score].backgroundColor, colors[score].ringColor, variant === 'calculator' ? 'max-w-sm w-full p-2 rounded-3xl' : 'w-full max-w-64 p-0 rounded-xl m-4']">
     <div class="flex p-4 items-bottom leading-none align-bottom w-full">
       <h2 class="inline-flex me-auto font-score"

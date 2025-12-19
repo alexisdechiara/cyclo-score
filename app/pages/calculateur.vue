@@ -26,7 +26,7 @@ defineOgImageComponent('Docs')
 </script>
 
 <template>
-  <div class="w-full h-(--ui-main-height) flex flex-col items-center justify-between overflow-hidden">
+  <div class="size-full h-(--ui-main-height) flex flex-col items-center justify-between overflow-hidden">
     <UProgress v-model="progress" size="sm" :max="100" />
 
     <div class="flex-1 w-full max-w-4xl flex flex-col justify-center items-center overflow-y-auto min-h-0 p-4">

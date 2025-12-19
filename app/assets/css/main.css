@@ -58,10 +58,10 @@
 :root {
   --ui-header-height: calc(var(--spacing) * 16);
   --ui-footer-height: calc(var(--spacing) * 16);
-  --ui-main-height: calc(100vh - var(--ui-header-height) - var(--ui-footer-height));
+  --ui-main-height: calc(100dvh - var(--ui-header-height) - var(--ui-footer-height));
   --ui-container: var(--container-8xl);
 }
 
 html {
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable overlay;
 }

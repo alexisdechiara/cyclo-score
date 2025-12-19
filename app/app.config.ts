@@ -5,17 +5,17 @@ export default defineAppConfig({
       neutral: "slate"
     },
     main: {
-      base: "min-h-0 size-full"
+      base: "min-h-(--ui-main-height) size-full"
     },
     footer: {
       slots: {
-        root: "outline-1 outline-default h-(--ui-footer-height) box-border",
+        root: "outline-1 outline-default lg:h-(--ui-footer-height) box-border",
         left: "text-sm text-muted"
       }
     },
     pageHero: {
       slots: {
-        container: "py-0 sm:py-0 lg:py-0 h-(--ui-main-height)"
+        container: "lg:py-0 lg:h-(--ui-main-height)"
       }
     }
   },
