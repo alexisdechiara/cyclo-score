@@ -490,7 +490,8 @@ onBeforeUnmount(() => {
         </div>
       </UCard>
     </transition>
-    <UCard :ui="{ body: 'p-2 sm:p-4', root: 'absolute top-4 right-4 z-50 max-w-72 w-full' }">
+    <UCard
+      :ui="{ body: 'p-2 sm:p-4', root: 'absolute top-0 right-0 md:top-4 md:right-4 z-50 md:max-w-72 w-full rounded-none md:rounded-lg' }">
       <UAccordion :items="[{ label: '' }]" :ui="{ trigger: 'py-0 cursor-pointer' }">
         <template #leading>
           <span class="font-semibold text-highlighted">Paramètres</span>

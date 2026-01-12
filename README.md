@@ -91,6 +91,45 @@ Vous pouvez ensuite prévisualiser le build localement avec :
 ```bash
 bun run preview
 ```
+
+## 🔐 Configuration du Provider GitHub (Nuxt Studio)
+
+Ce projet utilise **Nuxt Studio** pour l'édition de contenu. Pour configurer le provider GitHub, suivez ces étapes :
+
+### Créer une application GitHub OAuth
+
+Allez dans les [GitHub Developer Settings](https://github.com/settings/developers) et créez une nouvelle OAuth App avec :
+
+- **Application name** : Le nom de votre application
+- **Homepage URL** : `https://yourdomain.com` (ou `http://localhost:3000` pour le développement)
+- **Authorization callback URL** : `https://yourdomain.com/__nuxt_studio/auth/github` (ou `http://localhost:3000/__nuxt_studio/auth/github` pour le développement)
+
+### Configurer les variables d'environnement
+
+Après avoir créé l'application OAuth, vous obtiendrez un **Client ID** et un **Client Secret**. Ajoutez toutes les variables suivantes à votre fichier `.env` en copiant le fichier `.env.example` :
+
+```bash
+# Configuration du repository Nuxt Studio
+STUDIO_PROVIDER=github
+STUDIO_OWNER=votre-nom-dutilisateur-github
+STUDIO_REPO=nom-de-votre-repository
+STUDIO_BRANCH=main  # optionnel, par défaut : main
+
+# Authentification GitHub OAuth
+STUDIO_GITHUB_CLIENT_ID=votre_github_client_id
+STUDIO_GITHUB_CLIENT_SECRET=votre_github_client_secret
+
+```
+
+Les utilisateurs pourront alors s'authentifier via GitHub et auront un accès automatique au repository pour pousser leurs modifications.
+
+### Documentation complémentaire
+
+Pour plus d'informations sur la configuration des providers d'authentification avec Nuxt Studio, consultez la documentation officielle :
+
+👉 **[Documentation Nuxt Studio - Auth Providers](https://nuxt.studio/auth-providers)**
+
+Cette documentation couvre tous les providers disponibles (GitHub, GitLab, etc.) avec des exemples détaillés de configuration.
 ## 📱 Contact
 
 Vous pouvez contacter l'auteur du projet sur [GitHub](https://github.com/alexisdechiara) ou via [son site web](https://alexisdechiara.fr)

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center overflow-hidden size-full">
     <ScoreBadge :score="score" size="xl" />
   </div>
 </template>
